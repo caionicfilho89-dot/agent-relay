@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-relay"
+version = "0.1.0"
+description = "Run the AI coding agents you already pay for as one team: a shared task board, a test gate, and automatic hand-off to whichever agent still has quota."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "agent-relay contributors" }]
+keywords = ["ai", "agents", "orchestration", "claude-code", "cursor", "gemini", "grok", "quota", "multi-agent"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development",
+]
+dependencies = []
+
+[project.optional-dependencies]
+mail = ["mcp>=1.14"]
+
+[project.scripts]
+relay = "agent_relay.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/caionicfilho89-dot/agent-relay"
+Issues = "https://github.com/caionicfilho89-dot/agent-relay/issues"
+
+[tool.setuptools.packages.find]
+include = ["agent_relay*"]
+
+[tool.setuptools.package-data]
+agent_relay = ["scripts/*.ps1"]

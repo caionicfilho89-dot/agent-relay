@@ -1,0 +1,91 @@
+{
+  "project": "My app",
+  "workdir": ".",
+  "allow_autonomous": false,
+  "instructions": "Read README.md and AGENTS.md first. Small commits, run the tests before finishing a task.",
+
+  "accounts": {
+    "claude": {
+      "source": "command",
+      "label": "Claude Max",
+      "command": ["python", "scripts/claude_usage.py"]
+    },
+    "xai": {
+      "source": "grok_log",
+      "label": "SuperGrok (Grok CLI + Cursor on Grok)"
+    },
+    "google": {
+      "source": "agy",
+      "label": "Google AI Pro (Antigravity)",
+      "model_prefix": "gemini-3.8-flash"
+    },
+    "copilot": {
+      "source": "file",
+      "label": "Copilot (read from its settings page by hand)"
+    }
+  },
+
+  "seats": {
+    "builder": {
+      "label": "Builder",
+      "role": "Implements features and fixes from the board.",
+      "engines": [
+        {"name": "claude-code", "account": "claude", "delivery": "hook", "hook_format": "claude", "model": "claude-opus-5-5"},
+        {
+          "name": "antigravity-cli",
+          "account": "google",
+          "delivery": "cli",
+          "terminal": "wt",
+          "command": ["agy", "-i", "{prompt}", "--add-dir", "{workdir}"],
+          "autonomous_args": ["--mode", "auto"]
+        }
+      ]
+    },
+    "designer": {
+      "label": "Designer",
+      "role": "Screens, layout and usability.",
+      "engines": [
+        {
+          "name": "cursor",
+          "account": "xai",
+          "delivery": "window",
+          "window": {"process": "Cursor", "title": "", "input_from_bottom": 75, "send": "button",
+                     "button_from_right": 85, "button_from_bottom": 70}
+        },
+        {
+          "name": "antigravity-cli",
+          "account": "google",
+          "delivery": "cli",
+          "terminal": "wt",
+          "command": ["agy", "-i", "{prompt}"],
+          "autonomous_args": ["--mode", "auto"]
+        }
+      ]
+    },
+    "tester": {
+      "label": "Tester",
+      "role": "Uses the app for real, writes down bugs as new tasks for the builder.",
+      "engines": [
+        {"name": "grok-cli", "account": "xai", "delivery": "hook", "hook_format": "claude"},
+        {"name": "claude-code-tester", "account": "claude", "delivery": "manual"}
+      ]
+    }
+  },
+
+  "gate": {
+    "checks": [["python", "-m", "pytest", "-q"]],
+    "forbidden_paths": ["dist/", "build/"]
+  },
+
+  "reviewer": {
+    "enabled": true,
+    "account": "google",
+    "command": ["agy", "-p", "{prompt}", "--mode", "plan", "--model", "gemini-3.8-flash-low"],
+    "goals_file": "GOALS.md",
+    "plan_when_open_below": 3,
+    "plan_max_tasks": 3
+  },
+
+  "mail": {"enabled": false, "url": "http://127.0.0.1:8765/mcp/"},
+  "monitor": {"enabled": false}
+}
