@@ -122,7 +122,7 @@ relay doctor                check the setup
 
 ## Status
 
-Alpha. The ideas come from a setup that ran for weeks with six agents (Claude Code, Cursor, Antigravity, Grok CLI, a Grok desktop app and Gemini) building a real project on Windows. This package is that setup rewritten to be configurable instead of hard-coded. Expect rough edges, and please report them.
+Alpha. The ideas come from a setup that ran for about a week with up to six agents (Claude Code, Cursor, Antigravity, Grok CLI, a Grok desktop app and Gemini) building a real project on Windows. This package is that setup rewritten to be configurable instead of hard-coded. Expect rough edges, and please report them.
 
 ## Contributing
 

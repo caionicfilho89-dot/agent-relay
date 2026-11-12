@@ -59,6 +59,6 @@ Quando alguma ferramenta escreve "quota reached" ou "usage limit", a conta é ma
 
 ## Situação
 
-Versão alfa. As ideias vêm de uma fábrica que rodou por semanas com seis agentes (Claude Code, Cursor, Antigravity, Grok CLI, um app do Grok e Gemini) construindo um projeto de verdade no Windows. Este pacote é essa fábrica reescrita pra ser configurável em vez de ter tudo fixo no código. Vai ter arestas: abra uma issue.
+Versão alfa. As ideias vêm de uma fábrica que rodou por cerca de uma semana com até seis agentes (Claude Code, Cursor, Antigravity, Grok CLI, um app do Grok e Gemini) construindo um projeto de verdade no Windows. Este pacote é essa fábrica reescrita pra ser configurável em vez de ter tudo fixo no código. Vai ter arestas: abra uma issue.
 
 Licença MIT.
